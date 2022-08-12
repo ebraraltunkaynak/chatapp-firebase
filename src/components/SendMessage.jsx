@@ -1,5 +1,5 @@
-import { collection, serverTimestamp,addDoc } from 'firebase/firestore'
-import React from 'react'
+import { collection, serverTimestamp, addDoc } from 'firebase/firestore'
+
 import { useState } from 'react'
 import {auth,db} from '../firebase'
 
@@ -7,15 +7,15 @@ import {auth,db} from '../firebase'
 const style  ={
     form:`h-14 w-full max-w-[728px] flex text-xl absolute bottom-0`,
     input:`w-full  text-xl p-3  bg-gray-900 text-white outline-none border-none`,
-    button:`w-[20%] bg-green-500`
+    button:`w-[20%] bg-green-500`,
 }
 const SendMessage = ({scroll}) => {
-    const [input,setInput] = useState( "");
+    const [input,setInput] = useState( '');
 
     const sendMessage= async (e) =>{
         e.preventDefault()
-    if(input ==="") {
-        alert("lütfen mesaj alanını boş bırakmayınız")
+    if(input ==='') {
+        alert('lütfen mesaj alanını boş bırakmayınız')
         return
     }
         const {uid,displayName} =auth.currentUser
@@ -23,7 +23,7 @@ const SendMessage = ({scroll}) => {
             text: input,
             name: displayName,
             uid,
-            Timestamp: serverTimestamp()
+            timestamp: serverTimestamp()
          })
           setInput('')
           scroll.current.scrollIntoView({behavior: 'smooth'})
@@ -36,8 +36,8 @@ const SendMessage = ({scroll}) => {
          value={input} 
           className={style.input}
            type="text" 
-           placeholder="message"  />
-        <button className={style.button} type="submit">Send </button>
+           placeholder='message'  />
+        <button className={style.button} type='submit'>Send </button>
         
         </form>
   )
